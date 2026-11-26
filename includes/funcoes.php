@@ -35,3 +35,27 @@ function validarPost($titulo, $conteudo, $data_publicacao)
 
     return $erros;
 }
+
+// Converte a data para um formato mais amigável
+function formatarData($data)
+{
+    $objeto = DateTime::createFromFormat('Y-m-d', $data);
+    return $objeto ? $objeto->format('d/m/Y') : $data;
+}
+
+// Devolve só o começo do texto, sem cortar a palavra no meio
+function resumir($texto, $limite = 150)
+{
+    if (mb_strlen($texto) <= $limite) {
+        return $texto;
+    }
+
+    $corte = mb_substr($texto, 0, $limite);
+    $ultimoEspaco = mb_strrpos($corte, ' ');
+
+    if ($ultimoEspaco !== false) {
+        $corte = mb_substr($corte, 0, $ultimoEspaco);
+    }
+
+    return $corte . '...';
+}
