@@ -1,4 +1,7 @@
 <?php
+// Define o fuso horário do projeto, isso evita que date use UTC
+date_default_timezone_set('America/Sao_Paulo');
+
 // Dados de acesso ao banco
 $host    = 'localhost';
 $banco   = 'blog';
