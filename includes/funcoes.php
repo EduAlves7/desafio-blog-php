@@ -5,7 +5,6 @@ define('LIMITE_TITULO', 255);
 define('LIMITE_CONTEUDO', 10000);
 define('DATA_MINIMA', '2000-01-01');
 
-// Valida os dados de um post e devolve a lista de erros
 
 function validarPost($titulo, $conteudo, $data_publicacao)
 {
@@ -70,4 +69,37 @@ function buscarPost($pdo, $id)
     $stmt->execute([':id' => $id]);
 
     return $stmt->fetch();
+}
+
+function parametroTexto($nome, $limite = 100)
+{
+    $valor = $_GET[$nome] ?? '';
+
+    return is_string($valor) ? mb_substr(trim($valor), 0, $limite) : '';
+}
+
+function escaparLike($texto)
+{
+    return str_replace(['\\', '%', '_'], ['\\\\', '\%', '\_'], $texto);
+}
+
+function buscarPosts($pdo, $busca = '')
+{
+    $ordem = 'ORDER BY data_publicacao DESC, id DESC';
+
+    if ($busca === '') {
+        return $pdo->query("SELECT id, titulo, conteudo, data_publicacao FROM posts $ordem")->fetchAll();
+    }
+
+    $termo = '%' . escaparLike($busca) . '%';
+
+    $stmt = $pdo->prepare(
+        "SELECT id, titulo, conteudo, data_publicacao
+         FROM posts
+         WHERE titulo LIKE :titulo OR conteudo LIKE :conteudo
+         $ordem"
+    );
+    $stmt->execute([':titulo' => $termo, ':conteudo' => $termo]);
+
+    return $stmt->fetchAll();
 }
