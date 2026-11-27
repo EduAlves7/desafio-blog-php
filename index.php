@@ -23,8 +23,9 @@ include 'includes/header.php';
 <h1 class="mb-4">Meus posts</h1>
 
 <?php if (isset($mensagens[$msg])): ?>
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissible fade show" id="mensagem-sucesso" role="alert">
         <?= htmlspecialchars($mensagens[$msg]) ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
     </div>
 <?php endif; ?>
 
