@@ -26,27 +26,28 @@ PHP, MySQL, HTML, CSS, JavaScript e Bootstrap 5 (via CDN).
 
 ## Como executar
 
+1. **Clone o projeto** com o nome `blog` na pasta pública do seu servidor (ou em qualquer pasta, caso use o servidor embutido do PHP):
+   ```bash
+   git clone https://github.com/EduAlves7/desafio-blog-php.git blog
+   ```
+   - **Laragon (Windows):** `C:\laragon\www`
+   - **XAMPP (Windows):** `C:\xampp\htdocs`
+   - **Apache (Linux):** `/var/www/html`
+
 As credenciais do banco ficam em `config/conexao.php` (padrão: usuário `root` e senha vazia). Se o seu MySQL usar outra senha, altere apenas esse arquivo.
 
 ### No Windows (Laragon ou XAMPP)
 
-1. **Clone o projeto** dentro da pasta pública do seu servidor com o nome `blog`:
-   - **Laragon:** `C:\laragon\www`
-   - **XAMPP:** `C:\xampp\htdocs`
-   ```bash
-   git clone [https://github.com/EduAlves7/NOME-DO-REPOSITORIO.git](https://github.com/EduAlves7/NOME-DO-REPOSITORIO.git) blog
-   ```
-2. **Inicie os serviços:** no Laragon, clique em *Iniciar tudo*; no XAMPP, inicie *Apache* e *MySQL*.
-3. **Importe o banco** (`database/banco.sql`):
+1. **Inicie os serviços:** no Laragon, clique em *Iniciar tudo*; no XAMPP, inicie *Apache* e *MySQL*.
+2. **Importe o banco** (`database/banco.sql`):
    - **Laragon:** abra *Banco de dados* (HeidiSQL) > *Arquivo > Carregar arquivo SQL* e execute (`F9`).
    - **XAMPP:** acesse `http://localhost/phpmyadmin` > aba *Importar*, selecione o arquivo e execute.
-4. **Acesse no navegador:** `http://localhost/blog`
+3. **Acesse no navegador:** `http://localhost/blog`
 
 ### No Linux
 
-1. **Clone o projeto** na pasta de sua preferência (ou em `/var/www/html` se for usar Apache):
+1. **Entre na pasta do projeto:**
    ```bash
-   git clone [https://github.com/EduAlves7/NOME-DO-REPOSITORIO.git](https://github.com/EduAlves7/NOME-DO-REPOSITORIO.git) blog
    cd blog
    ```
 2. **Inicie o MySQL:**
@@ -63,7 +64,7 @@ As credenciais do banco ficam em `config/conexao.php` (padrão: usuário `root` 
      php -S localhost:8000
      ```
      Acesse `http://localhost:8000`.
-   - **Usando Apache:** deixe a pasta em `/var/www/html/blog`, inicie o serviço (`sudo systemctl start apache2`) e acesse `http://localhost/blog`.
+   - **Usando Apache:** com o projeto em `/var/www/html/blog`, inicie o serviço (`sudo systemctl start apache2`) e acesse `http://localhost/blog`.
 
 ## Estrutura
 
