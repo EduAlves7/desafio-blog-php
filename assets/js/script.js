@@ -21,3 +21,46 @@ document.querySelectorAll('.form-excluir').forEach((formulario) => {
         }
     });
 });
+
+const formPost = document.getElementById('form-post');
+
+if (formPost) {
+    const validadores = {
+        titulo: (valor) => (valor === '' ? 'O título é obrigatório.' : ''),
+        conteudo: (valor) => (valor === '' ? 'O conteúdo é obrigatório.' : ''),
+        data_publicacao: (valor, campo) => {
+            if (valor === '') return 'Informe uma data de publicação válida.';
+            if (campo.validity.rangeUnderflow) return 'A data de publicação não pode ser anterior a 01/01/2000.';
+            if (campo.validity.rangeOverflow) return 'A data de publicação não pode ser futura.';
+            return '';
+        },
+    };
+
+    const campos = Object.keys(validadores).map((nome) => formPost.elements[nome]);
+
+    const validarCampo = (campo) => {
+        const erro = validadores[campo.name](campo.value.trim(), campo);
+
+        campo.classList.toggle('is-invalid', erro !== '');
+        campo.nextElementSibling.textContent = erro;
+
+        return erro === '';
+    };
+
+    formPost.addEventListener('submit', (evento) => {
+        const resultados = campos.map(validarCampo);
+
+        if (resultados.includes(false)) {
+            evento.preventDefault();
+            campos[resultados.indexOf(false)].focus();
+        }
+    });
+
+    campos.forEach((campo) => {
+        campo.addEventListener('input', () => {
+            if (campo.classList.contains('is-invalid')) {
+                validarCampo(campo);
+            }
+        });
+    });
+}
