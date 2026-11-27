@@ -35,7 +35,7 @@ include 'includes/header.php';
 <?php foreach ($posts as $post): ?>
     <article class="card mb-3">
         <div class="card-body">
-            <h2 class="h4 card-title">
+            <h2 class="h4 card-title text-break">
                 <a href="ver.php?id=<?= (int) $post['id'] ?>" class="text-decoration-none">
                     <?= htmlspecialchars($post['titulo']) ?>
                 </a>
@@ -45,7 +45,7 @@ include 'includes/header.php';
                 Publicado em <?= formatarData($post['data_publicacao']) ?>
             </p>
 
-            <p class="card-text">
+            <p class="card-text text-break">
                 <?= nl2br(htmlspecialchars(resumir($post['conteudo']))) ?>
             </p>
 
