@@ -11,3 +11,13 @@ if (mensagem) {
     url.searchParams.delete('msg');
     history.replaceState(null, '', url);
 }
+
+document.querySelectorAll('.form-excluir').forEach((formulario) => {
+    formulario.addEventListener('submit', (evento) => {
+        const confirmou = confirm('Tem certeza que deseja excluir este post? Esta ação não pode ser desfeita.');
+
+        if (!confirmou) {
+            evento.preventDefault();
+        }
+    });
+});
