@@ -1,1 +1,29 @@
-/* styles */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+}
+
+main {
+    flex: 1;
+}
+
+.card {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.35rem 0.75rem rgba(0, 0, 0, 0.07);
+}
+
+.card-title a:hover {
+    text-decoration: underline !important;
+}
+
+article .mb-4 {
+    line-height: 1.75;
+    font-size: 1.05rem;
+}
