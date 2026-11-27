@@ -4,7 +4,7 @@ Aplicação web para criar, listar, buscar, editar e excluir postagens, desenvol
 
 ## Demonstração
 
-
+https://github.com/user-attachments/assets/2cc86357-2110-475f-9309-b6e9c00f94e9
 
 ## Funcionalidades
 
