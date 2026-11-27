@@ -59,3 +59,15 @@ function resumir($texto, $limite = 150)
 
     return $corte . '...';
 }
+
+function buscarPost($pdo, $id)
+{
+    if (!$id) {
+        return false;
+    }
+
+    $stmt = $pdo->prepare('SELECT id, titulo, conteudo, data_publicacao FROM posts WHERE id = :id');
+    $stmt->execute([':id' => $id]);
+
+    return $stmt->fetch();
+}

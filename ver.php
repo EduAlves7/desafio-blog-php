@@ -3,13 +3,7 @@ require 'config/conexao.php';
 require 'includes/funcoes.php';
 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-$post = false;
-
-if ($id) {
-    $stmt = $pdo->prepare('SELECT id, titulo, conteudo, data_publicacao FROM posts WHERE id = :id');
-    $stmt->execute([':id' => $id]);
-    $post = $stmt->fetch();
-}
+$post = buscarPost($pdo, $id);
 
 if (!$post) {
     http_response_code(404);
